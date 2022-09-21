@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Stock Portfolio
+{% endblock %}
+
+{% block content %}
+    {% if api %}
+        {% if api == "Error" %}
+            <h1>Sorry ! we can't fetch data for your current request</h1>
+            <h1>You might have given wrong ticker symbol</h1>
+
+        {% else %}
+            <div class="card  bg-success mb-3" style="width: 18rem;">
+                <div class="card-header">
+                <h3> <b>{{ticker}}</b> </h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"> Price: ${{ api.c }}</li>
+                <li class="list-group-item"> Previous Close: ${{ api.pc }}</li>
+                <li class="list-group-item">Change: ${{ api.d }}</li>
+                <li class="list-group-item">Percent Change: {{ api.dp }}</li>
+                <li class="list-group-item">1 day High: ${{ api.h }}</li>
+                <li class="list-group-item">1 day  Low: ${{ api.l }}</li>
+                <li class="list-group-item">Open price ${{api.o}}</li>
+                
+                </ul>
+            </div>
+        {% endif %}
+
+    {% else %}
+
+    {% endif %}
+
+{% endblock %}
